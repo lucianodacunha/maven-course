@@ -15,6 +15,20 @@ Para evitá-los e ser mais explícito sobre qual versão utilizar, adicione essa
     </properties>
 ```
 
+Outro forma de definir qual versão do Java desejada, é utilizar o plugin [compiler](https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-source-and-target.html).
+
+```
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.1</version>
+    <configuration>
+        <source>11</source>
+        <target>11</target>
+    </configuration>
+</plugin>
+```
+
 - **Configurando os sources**:
 
 Dependendo do projeto importado, os sources podem não estar configurados.
@@ -45,7 +59,15 @@ No Eclipse, acesse no package explorer as propriedades do projeto:
 Export > War File
 ```
 
-O arquivo será gerado na pasta `target/`.
+O arquivo será gerado na pasta `target/`. Por padrão o nome do arquivo será o mesmo que definido em `artifactId`. Caso deseje gerar o arquivo final com outro nome, poderá ser utilizada a tag:
+
+```
+<finalName>webstore</finalName> 
+```
+
+na seção `build` do pom.xml.
+
+### Verificando o conteúdo do `.war`
 
 ```
 $ unzip -l webstore.war 
